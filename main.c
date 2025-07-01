@@ -15,7 +15,7 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-int ft_is_numeric_str(const char *str)
+/*int ft_is_numeric_str(const char *str)
 {
     int i;
 
@@ -29,7 +29,7 @@ int ft_is_numeric_str(const char *str)
         i++;
     }
     return (1); // All characters are digits
-}
+}*/
 int no_doubles(char *str, char c, int pos)
 {
     int i;
@@ -56,10 +56,11 @@ int main(int ac, char **av)
             j = 0;
             while (av[i][j])
             {
-                if (ft_is_numeric_str(&av[i][j]) && !no_doubles(av[i], av[i][j], j)) // Check first if its numerical and no doubles :)
+                if (ft_isdigit(av[i][j]) && !no_doubles(av[i], av[i][j], j)) // Check first if its numerical and no doubles :)
                     write(1, &av[i][j], 1);
-                else
-                    return (write(1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
+                else if (!ft_isdigit(av[i][j]))
+                    exit(0);
+                    //return (write(1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
                 j++;
             }
             write(1, "\n", 1);

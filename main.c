@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include "push_swap.h"
 
 int ft_strlen(char *str)
 {
@@ -15,21 +15,6 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-/*int ft_is_numeric_str(const char *str)
-{
-    int i;
-
-    if (str == NULL || *str == '\0') 
-        return (0); // Empty or null string is not numeric
-    i = 0;
-    while (str[i]) 
-    {
-        if (!ft_isdigit(str[i])) 
-            return (0); // Non-digit character found
-        i++;
-    }
-    return (1); // All characters are digits
-}*/
 int no_doubles(char *str, char c, int pos)
 {
     int i;
@@ -59,8 +44,8 @@ int main(int ac, char **av)
                 if (ft_isdigit(av[i][j]) && !no_doubles(av[i], av[i][j], j)) // Check first if its numerical and no doubles :)
                     write(1, &av[i][j], 1);
                 else if (!ft_isdigit(av[i][j]))
-                    exit(0);
-                    //return (write(1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
+                    //exit(0);
+                    return (write(-1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
                 j++;
             }
             write(1, "\n", 1);

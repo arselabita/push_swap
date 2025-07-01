@@ -1,24 +1,9 @@
-#include <unistd.h>
+#include "push_swap.h"
 
-int main(int ac, char **av)
+Node* createNode(int new_data)
 {
-    int i;
-    int j;
-
-    if (ac >= 2)
-    {
-        i = 1;
-        while (i < ac)
-        {
-            j = 0;
-            while (av[i][j])
-            {
-                write(1, &av[i][j], 1);
-                j++;
-            }
-            write(1, "\n", 1);
-            i++;
-        }
-    }
-    return (0);
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->data = new_data;
+    new_node->next = NULL;
+    return (new_node);
 }

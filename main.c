@@ -1,5 +1,14 @@
-#include <stdio.h>
+#include <unistd.h>
 
+int ft_strlen(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
@@ -21,32 +30,41 @@ int ft_is_numeric_str(const char *str)
     }
     return (1); // All characters are digits
 }
-int no_doubles()
-{
-    
-}
-
-int main(int ac, char **av)
+int no_doubles(char *str, char c, int pos)
 {
     int i;
 
-    ;
+    i = 0;
+    while (i < pos)
+    {
+        if (str[i] == c)
+            return (1);
+        i++;
+    }
+    return (0);
+}
+int main(int ac, char **av)
+{
+    int i;
+    int j;
+
     if (ac >= 2)
     {
         i = 1;
         while (i < ac)
         {
-            if (ft_is_numeric_str(av[i]) && !no_doubles(av[i], i)) // Check first if its numerical :)
-                printf("%s", av[i]);
-            else
+            j = 0;
+            while (av[i][j])
             {
-                printf("its not a numeric string!!"); // Then return the message if its not numerical
-                return (0);
+                if (ft_is_numeric_str(&av[i][j]) && !no_doubles(av[i], av[i][j], j)) // Check first if its numerical and no doubles :)
+                    write(1, &av[i][j], 1);
+                else
+                    return (write(1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
+                j++;
             }
-            printf("\n");
+            write(1, "\n", 1);
             i++;
         }
     }
-    printf("\n");
     return (0);
 }

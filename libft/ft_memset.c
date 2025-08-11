@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:20:54 by abita             #+#    #+#             */
-/*   Updated: 2025/08/11 12:21:15 by abita            ###   ########.fr       */
+/*   Created: 2025/04/23 11:36:34 by abita             #+#    #+#             */
+/*   Updated: 2025/04/23 11:36:36 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
 
-Node* createNode(int new_data)
+void	*ft_memset(void *str, int c, size_t len)
 {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
-    return (new_node);
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)str;
+	while (i < len)
+	{
+		ptr[i] = (unsigned char)c;
+		i++;
+	}
+	return (str);
 }
+/*
+int main()
+{
+	char buffer[20];
+
+	ft_memset(buffer, 'A', 10);
+	buffer[10] = '\0';
+	printf("result: %s\n", buffer);
+	return (0);
+}*/

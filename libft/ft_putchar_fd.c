@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:20:54 by abita             #+#    #+#             */
-/*   Updated: 2025/08/11 12:21:15 by abita            ###   ########.fr       */
+/*   Created: 2025/04/30 16:54:48 by abita             #+#    #+#             */
+/*   Updated: 2025/04/30 16:54:49 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
 
-Node* createNode(int new_data)
+void	ft_putchar_fd(char c, int fd)
 {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
-    return (new_node);
+	write(fd, &c, 1);
 }
+/*
+int	main()
+{
+	char	ch;
+	int	fd;
+
+	ch = 'a';
+	fd = open("test.txt", O_WRONLY | O_CREAT, 0644);
+	if (fd == -1)
+		return (1);
+	printf("fd: %d\n", fd);
+	ft_putchar_fd(ch, fd);
+	
+	close (fd);
+	return (0);
+}*/

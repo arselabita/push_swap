@@ -1,21 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:20:54 by abita             #+#    #+#             */
-/*   Updated: 2025/08/11 12:21:15 by abita            ###   ########.fr       */
+/*   Created: 2025/05/01 15:56:18 by abita             #+#    #+#             */
+/*   Updated: 2025/05/01 15:56:19 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
 
-Node* createNode(int new_data)
+void	ft_putstr_fd(char *s, int fd)
 {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
-    return (new_node);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }
+/*
+int	main()
+{
+	char	ch[] = "arsela";
+	int	fd;
+
+	fd = open("test.txt", O_WRONLY | O_CREAT, 0644);
+	if (fd == -1)
+		return (1);
+	printf("fd: %d\n", fd);
+	ft_putstr_fd(ch, fd);
+
+	close (fd);
+	return (0);
+}*/

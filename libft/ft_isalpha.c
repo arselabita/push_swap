@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:20:54 by abita             #+#    #+#             */
-/*   Updated: 2025/08/11 12:21:15 by abita            ###   ########.fr       */
+/*   Created: 2025/04/22 16:45:25 by abita             #+#    #+#             */
+/*   Updated: 2025/04/22 16:45:35 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
 
-Node* createNode(int new_data)
+int	ft_isalpha(int c)
 {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
-    return (new_node);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }
+/*
+int	main()
+{
+	printf("%d\n", ft_isalpha('A'));
+	printf("%d\n", ft_isalpha('Z'));
+	printf("%d\n", ft_isalpha('1'));
+	printf("%d\n", ft_isalpha('@'));
+	return (0);
+}*/

@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:20:54 by abita             #+#    #+#             */
-/*   Updated: 2025/08/11 12:21:15 by abita            ###   ########.fr       */
+/*   Created: 2025/04/25 11:13:28 by abita             #+#    #+#             */
+/*   Updated: 2025/04/25 11:13:34 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+//#include <stdio.h>
 
-Node* createNode(int new_data)
+int	ft_toupper(int c)
 {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
-    return (new_node);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }
+/*
+int	main()
+{
+	int	i;
+	char	letters[20] = "arrsela1**23";
+
+	i = 0;
+	while (letters[i])
+	{
+		printf("%c", ft_toupper(letters[i]));
+		i++;
+	}
+	return (0);
+}*/

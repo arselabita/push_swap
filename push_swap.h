@@ -30,4 +30,12 @@ typedef struct
     t_node *top;
 } t_stack;
 
+
+// the linked list
+t_node *create_node(int content);
+
+// the initialization of stack
+void initialize_stack(t_stack *stack);
+
+
 #endif

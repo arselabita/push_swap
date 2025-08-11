@@ -1,7 +1,7 @@
 
 #include "push_swap.h"
 
-t_node *createNode(int content)
+t_node *create_node(int content)
 {
     t_node *newNode;
     
@@ -14,4 +14,9 @@ t_node *createNode(int content)
     newNode->content = content;
     newNode->next = NULL;
     return (newNode);
-} 
+}
+
+void initialize_stack(t_stack *stack)
+{
+    return (stack->top = NULL);
+}

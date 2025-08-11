@@ -13,18 +13,21 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft/libft.h"
 
-// Struct representing a node in the linked list
-typedef struct Node {
-    int data;
-    struct Node* next;
-} Node;
+// Structure for a stack node
+typedef struct s_node
+{
+    void            *content;
+    struct s_node  *next;
+} t_node;
 
-// Struct to implement stack using a singly linked list
-typedef struct stack {
-    Node* head;
-} Stack;
+// Structure for the stack itself
+typedef struct 
+{
+    t_node *top;
+} t_stack;
 
 #endif

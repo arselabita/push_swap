@@ -12,36 +12,11 @@
 
 #include "push_swap.h"
 
-int ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-int no_doubles(char *str, char c, int pos)
-{
-    int i;
-
-    i = 0;
-    while (i < pos)
-    {
-        if (str[i] == c)
-            return (1);
-        i++;
-    }
-    return (0);
-}
 int main(int ac, char **av)
 {
+    t_stack a;
+    t_stack b;
+
     int i;
     int j;
 

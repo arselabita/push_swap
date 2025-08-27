@@ -15,27 +15,27 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h> // DONT FORGET TO DELETE
 # include "libft/libft.h"
 
-// Structure for a stack node
+// Structure for the linked stack
 typedef struct s_node
 {
-    void            *content;
+    void            *data;
     struct s_node  *next;
 } t_node;
 
-// Structure for the stack itself
-typedef struct 
-{
-    t_node *top;
-} t_stack;
 
-
-// the linked list
+// __LINKED_LIST_IMPLEMENTATION_FUNCTIONS___
 t_node *create_node(int content);
+int inserted_before_head(t_node **head, int data);
+int delete_head(t_node **head);
 
-// the initialization of stack
-void initialize_stack(t_stack *stack);
+// ____STACK_IMPLEMENTATION_FUNCTIONS____
+int is_empty(t_node **stack);
+void push(t_node **stack, int data);
+int pop(t_node **stack);
+
 
 
 #endif

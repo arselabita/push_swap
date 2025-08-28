@@ -12,32 +12,17 @@
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-    t_node a;
-    t_node b;
+    t_stack *a;
+    t_stack *b;
 
-    int i;
-    int j;
-
-    if (ac >= 2)
-    {
-        i = 1;
-        while (i < ac)
-        {
-            j = 0;
-            while (av[i][j])
-            {
-                if (ft_isdigit(av[i][j]) && !no_doubles(av[i], av[i][j], j)) // Check first if its numerical and no doubles :)
-                    write(1, &av[i][j], 1);
-                else if (!ft_isdigit(av[i][j]))
-                    //exit(0);
-                    return (write(-1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
-                j++;
-            }
-            write(1, "\n", 1);
-            i++;
-        }
-    }
+    if (argc < 2)
+        return (write(2, "ERROR: No arguments passed.\n", 29), 0);
+    a = create_stack(argc - 1);
+    if (!a)
+        return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
+    if (!parse_arguments(a, argc, argv))
+        return (destroy_stack(a), 1);
     return (0);
 }

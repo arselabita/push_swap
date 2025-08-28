@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
     t_stack *a;
     t_stack *b;
 
-    a = create_stack(100);
-    b = create_stack(0);
+    if (argc < 2)
+        return (write(2, "ERROR: No arguments passed.\n", 29), 0);
+    a = create_stack(argc - 1);
     if (!a)
         return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
-    if (is_empty(a))
-        return (write(2, "ERROR: Stack is empty.\n", 24));
-    destroy_stack(a);
+    if (!parse_arguments(a, argc, argv))
+        return (destroy_stack(a), 1);
     return (0);
 }

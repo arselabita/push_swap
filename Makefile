@@ -17,10 +17,11 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address,leak,undefined -g3
 # executable name
 NAME = push_swap
 LIBFT = libft/libft.a
-# source to bject files
+# source to object files
 CFILES = \
 	main.c \
-	
+	parse_arguments.c \
+	init_stack.c
 
 OFILES = $(CFILES:.c=.o)
 

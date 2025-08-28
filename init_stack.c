@@ -29,6 +29,12 @@ t_stack *create_stack(int capacity)
     return (stack);
 }
 
+void destroy_stack(t_stack *stack)
+{
+    free(stack->collection);
+    free(stack);
+}
+
 bool is_full(t_stack *stack)
 {
         return (stack->capacity == stack->size);

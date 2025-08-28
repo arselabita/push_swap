@@ -29,6 +29,7 @@ typedef struct s_stack
 
 // ____STACK_IMPLEMENTATION_FUNCTIONS____
 t_stack *create_stack(int capacity);
+void destroy_stack(t_stack *stack);
 bool is_full(t_stack *stack);
 bool is_empty(t_stack *stack);
 bool pop(t_stack *stack, int *item);

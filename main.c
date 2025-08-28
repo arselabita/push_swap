@@ -14,30 +14,15 @@
 
 int main(int ac, char **av)
 {
-    t_node a;
-    t_node b;
+    t_stack *a;
+    t_stack *b;
 
-    int i;
-    int j;
-
-    if (ac >= 2)
-    {
-        i = 1;
-        while (i < ac)
-        {
-            j = 0;
-            while (av[i][j])
-            {
-                if (ft_isdigit(av[i][j]) && !no_doubles(av[i], av[i][j], j)) // Check first if its numerical and no doubles :)
-                    write(1, &av[i][j], 1);
-                else if (!ft_isdigit(av[i][j]))
-                    //exit(0);
-                    return (write(-1, "its not a numeric string!!", ft_strlen("its not a numeric string!!")), 0);// Then return the message if its not numerical
-                j++;
-            }
-            write(1, "\n", 1);
-            i++;
-        }
-    }
+    a = create_stack(100);
+    b = create_stack(0);
+    if (!a)
+        return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
+    if (is_empty(a))
+        return (write(2, "ERROR: Stack is empty.\n", 24));
+    destroy_stack(a);
     return (0);
 }

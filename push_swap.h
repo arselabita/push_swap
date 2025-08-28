@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include <stdio.h> // DONT FORGET TO DELETE
 # include "libft/libft.h"
 
 // Structure for stack
@@ -26,6 +25,9 @@ typedef struct s_stack
     int capacity;
     int size;
 } t_stack;
+
+// __________MAIN_HELPER_FUNCTION___________
+int parse_arguments(t_stack **a, int argc, char **argv);
 
 // ____STACK_IMPLEMENTATION_FUNCTIONS____
 t_stack *create_stack(int capacity);

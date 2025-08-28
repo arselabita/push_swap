@@ -17,30 +17,48 @@ t_stack *create_stack(int capacity)
     t_stack *stack;
 
     if (capacity <= 0)
-        return (write(2, "The stack is empty!\n", 21), NULL);
+    {
+        write(2, "The stack is empty!\n", 21);
+        return (NULL);
+    }
     stack = (t_stack *)malloc(sizeof(t_stack));
     if (!stack)
-        return (write(2, "Failed to allocate memory for the stack!\n", 42), NULL);
-    stack->collection = (int)malloc(sizeof(int) * capacity);
+    {
+        write(2, "Failed to allocate memory for the stack!\n", 42);
+        return (NULL);
+    }
+    stack->collection = malloc(sizeof(int) * capacity);
     if (!stack->collection)
-        return (free(stack), write(2, "Failed to create the stack!\n", 29), NULL);
+    {
+        free(stack);
+        write(2, "Failed to create the stack!\n", 29);
+        return (NULL);
+    }
     stack->capacity = capacity;
     stack->size = 0;
     return (stack);
 }
-
 void destroy_stack(t_stack *stack)
 {
     free(stack->collection);
     free(stack);
 }
-
 bool is_full(t_stack *stack)
 {
         return (stack->capacity == stack->size);
 }
-
 bool is_empty(t_stack *stack)
 {
     return (stack->size == 0);
+}
+bool push(t_stack *stack, int item)
+{
+    if (is_full(stack))
+    {
+        write(2, "CAN'T PUSH: The stack is full.\n", 32);
+        return (false);
+    }
+    stack->collection[stack->size] = item;
+    stack->size++;    
+    return (true);
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <limits.h>
-//#include <stdio.h>
 
 int	ft_atoi(const char *nptr)
 {
@@ -36,14 +35,16 @@ int	ft_atoi(const char *nptr)
 		num += nptr[i] - '0';
 		i++;
 	}
+	if (num > INT_MAX || num < INT_MIN)
+		return (0);
 	return ((int)(num * minus));
 }
-/*
-int	main()
+
+/*int	main()
 {
 	printf("%d\n", ft_atoi("   -42"));
 	printf("%d\n", ft_atoi(" +123abc"));
-	printf("%d\n", ft_atoi("2147483647"));
+	printf("%d\n", ft_atoi("2147483648"));
 	printf("%d\n", ft_atoi("-2147483648"));
 	return (0);
 }*/

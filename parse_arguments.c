@@ -46,9 +46,10 @@ int parse_arguments(t_stack *a, int argc, char **argv)
             {
                 if (!ft_isdigit(nums[j][k]))
                     return(write(2, "ERROR: The input does not contain numbers.\n", 44), 0);
-                k++;  
+                k++;
             }
             numbers = ft_atoi(nums[j]);
+            
             j++;
         }
         i++;

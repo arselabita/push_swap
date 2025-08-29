@@ -113,9 +113,7 @@ int parse_arguments(t_stack *a, int argc, char **argv)
         while (nums[j])
         {
             if (!parsing_helper(a, nums[j], &number))
-            {
                 return (free_split(nums), 0);
-            }
             a->collection[a->size++] = number; // here i add in the stack the numbers
             j++;
         }

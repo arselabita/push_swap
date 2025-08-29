@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     t_stack *b;
 
     if (argc < 2)
-        return (write(2, "ERROR: No arguments passed.\n", 29), 0);
+        return (0);
     a = create_stack(argc - 1);
     if (!a)
         return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);

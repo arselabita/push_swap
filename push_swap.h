@@ -13,9 +13,10 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
+# include <stdlib.h> // malloc, free
+# include <unistd.h> // write
+# include <stdbool.h> // true, false
+# include <limits.h> // INT_MIN, INT_MAX
 # include "libft/libft.h"
 
 // Structure for stack

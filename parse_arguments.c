@@ -45,7 +45,9 @@ int parse_arguments(t_stack *a, int argc, char **argv)
             while (nums[j][k])
             {
                 if (!ft_isdigit(nums[j][k]))
-                    return(write(2, "ERROR: The input does not contain numbers.\n", 44), 0);
+                    return(write(2, "ERROR: The input doesnt have numbers.\n", 44), 0);
+                if (!ft_dublicate(nums[j][k]))
+                    return (write(2, "ERROR: The input contains dublicates.\n", 39), 0);
                 k++;
             }
             numbers = ft_atoi(nums[j]);

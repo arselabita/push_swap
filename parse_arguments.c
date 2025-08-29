@@ -18,16 +18,64 @@
     3. check: if the input is a number
         3.1 if not a number reply --> with a message
         3.2 the number should be within INT_MAX, INT_MIN
+        3.3 the input should be converted to long with -- > atol
     4. check: if the input has dublicates reply -- > not allowed 
     5. check: if the input is < 3
 */
 
+static int ft_valid_number(char *str)
+{
+    int i;
+
+    if (!str)
+        return (0);
+    i = 0;
+    if (str[i] == '-' || str[i] == '+')
+        i++;
+    if (!str[i]) // str was just + or -
+        return (0);
+    while (str[i])
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+static int ft_check_dublicates(t_stack *a, int number)
+{
+    int i;
+
+    i = 0;
+    if (!a || !a->collection)
+        return (0);
+    while (i < a->size)
+    {
+        if (a->collection[i] == number)
+            return (1); // dublicate found
+        i++;
+    }
+    return (0); // no dublicate
+}
+static void free_split(char **array)
+{
+    int i;
+
+    if (!array)
+        return (0);
+    i = 0;
+    while (array[i])
+    {
+        free(array[i]); // here to free each str 
+        i++;
+    }
+    free(array); // here i free the array itseld
+}
 int parse_arguments(t_stack *a, int argc, char **argv)
 {
     int i;
     int j;
-    int k;
-    int numbers;
+    int number;
     char **nums;
 
     i = 1;
@@ -39,21 +87,31 @@ int parse_arguments(t_stack *a, int argc, char **argv)
         j = 0;
         while (nums[j])
         {
-            k = 0;
-            if (nums[j][k] == '-' || nums[j][k] == '+')
-                k++;
-            while (nums[j][k])
+            if (!ft_valid_number(nums[j]))
             {
-                if (!ft_isdigit(nums[j][k]))
-                    return(write(2, "ERROR: The input doesnt have numbers.\n", 44), 0);
-                if (!ft_dublicate(nums[j][k]))
-                    return (write(2, "ERROR: The input contains dublicates.\n", 39), 0);
-                k++;
+                free_split(nums);
+                return(write(2, "ERROR: The input consists non-digit characters.\n", 49), 0);
             }
-            numbers = ft_atoi(nums[j]);
-            
+            number = ft_atoi(nums[j]);
+            if (number < INT_MIN || number > INT_MAX)
+            {
+                free_split(nums);
+                return ( write(2, "ERROR: Out of range.\n", 22), 0);
+            }
+            if (ft_check_dublicates(a, number))
+            {
+                free_split(nums);
+                return (write(2, "ERROR: The input contains duplicates.\n", 39), 0);
+            }
+            if (a->size >= a->capacity)
+            {
+                free_split(nums);
+                return (write(2, "ERROR: Stack Overflow.\n", 24), 0);
+            }
+            a->collection[a->size++] = number; // here i add in the stack the numbers
             j++;
         }
+        free_split(nums);
         i++;
     }
     return (1);

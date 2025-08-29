@@ -35,8 +35,6 @@ int	ft_atoi(const char *nptr)
 		num += nptr[i] - '0';
 		i++;
 	}
-	if (num > INT_MAX || num < INT_MIN)
-		return (0);
 	return ((int)(num * minus));
 }
 

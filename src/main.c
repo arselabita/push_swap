@@ -13,6 +13,8 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+
+// ____FOR_TESTING_PURPOSES____
 static void print_stack(t_stack *a)
 {
     int i;

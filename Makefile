@@ -12,34 +12,42 @@
 
 # the compiler flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address,leak,undefined -g3
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft
+RM = rm -f
+MAKE = make
 
 # executable name
 NAME = push_swap
 LIBFT = libft/libft.a
+
+# directories
+SRC_DIR = src
+OBJ_DIR = build
+
 # source to object files
-CFILES = \
-	main.c \
-	parse_arguments.c \
-	init_stack.c
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-OFILES = $(CFILES:.c=.o)
-
+# rules
 all: $(NAME)
 
-$(NAME): $(OFILES) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OFILES) $(LIBS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C libft
+	$(MAKE) -C libft
 
 clean:
-	rm -f $(OFILES)
-	make -C libft clean
+	$(RM) $(OBJS)
+	$(MAKE) -C libft clean
 
 fclean: clean 
-	rm -f $(NAME)
-	make -C libft fclean
+	$(RM) $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
 

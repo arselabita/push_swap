@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 static void print_stack(t_stack *a)
 {
     int i;
 
     i = 0;
-    while (a->collection[i])
+    while (i < a->size)
     {
-        write(1, &a->collection[i], 1);
+        printf("%d\n", a->collection[i]);
         i++;
     }
 }

@@ -12,6 +12,17 @@
 
 #include "push_swap.h"
 
+static void print_stack(t_stack *a)
+{
+    int i;
+
+    i = 0;
+    while (a->collection[i])
+    {
+        write(1, &a->collection[i], 1);
+        i++;
+    }
+}
 int main(int argc, char **argv)
 {
     t_stack *a;
@@ -24,6 +35,8 @@ int main(int argc, char **argv)
         return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
     if (!parse_arguments(a, argc, argv))
         return (destroy_stack(a), 1);
+    else
+        print_stack(a);
     destroy_stack(a);
     return (0);
 }

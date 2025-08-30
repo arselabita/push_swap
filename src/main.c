@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 int main(int argc, char **argv)
 {
     t_stack *a;
-    t_stack *b;
+    //t_stack *b;
 
     if (argc < 2)
         return (0);

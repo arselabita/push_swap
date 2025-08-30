@@ -17,7 +17,7 @@
 # include <unistd.h> // write
 # include <stdbool.h> // true, false
 # include <limits.h> // INT_MIN, INT_MAX
-# include "libft/libft.h"
+# include "libft.h"
 
 // Structure for stack
 typedef struct s_stack

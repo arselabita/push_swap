@@ -28,17 +28,19 @@ static void print_stack(t_stack *a)
 int main(int argc, char **argv)
 {
     t_stack *a;
-    //t_stack *b;
 
     if (argc < 2)
         return (0);
     a = create_stack(argc - 1);
-    if (!a)
+    if (!is_empty(a))
         return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
     if (!parse_arguments(a, argc, argv))
         return (destroy_stack(a), 1);
     else
-        print_stack(a);
+    {
+        stack_sorting(a);
+        print_stack(a);        
+    }
     destroy_stack(a);
     return (0);
 }

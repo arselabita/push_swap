@@ -36,7 +36,43 @@ Funksionet per kete file:
     rrr : rra and rrb at the same time.
 */
 
-void swap_a(t_stack *stack)
+// return 1 if the array is sorted in asc
+// return -1 if is sorted in dc order
+// return 0 if the array is not sorted
+
+int is_sorted(t_stack *a)
+{
+    int top;
+    t_stack *b;
+
+    b = create_stack(a->size);
+    top = -1;
+    if (top)
+        return (0);
+    
+}
+
+int stack_sortoing(t_stack *a)
+{
+    if (!is_empty(a))
+        return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
+    if (!is_sorted(a))
+    {
+        if (a->collection == 2)
+            sa(a);
+        else if (a->collection == 3)
+            //...
+        else
+            // radix alg
+    }
+    else
+    {
+        // if sorted
+        return ();
+    }
+     
+}
+/* void swap_a(t_stack *stack)
 {
     int i;
 
@@ -45,4 +81,4 @@ void swap_a(t_stack *stack)
     {
         
     }
-}
+} */

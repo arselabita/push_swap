@@ -36,3 +36,13 @@ Funksionet per kete file:
     rrr : rra and rrb at the same time.
 */
 
+void swap_a(t_stack *stack)
+{
+    int i;
+
+    i = 0
+    while (i < stack)
+    {
+        
+    }
+}

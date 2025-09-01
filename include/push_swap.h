@@ -22,9 +22,9 @@
 // Structure for stack
 typedef struct s_stack
 {
-    int *collection;
-    int capacity;
-    int size;
+    int *collection; // dynamically allocated array (which will be a poiner)
+    int capacity; // the capacity will be the size of the dynamically allocated array in terms on how many ints it can store
+    int size; // the number of elements stored in this dynamically allocated array
 } t_stack;
 
 // __________MAIN_HELPER_FUNCTION___________

@@ -12,6 +12,7 @@
 
 #include "../include/push_swap.h"
 #include <stdio.h>
+#include <stdlib.h>
 /*
 Funksionet per kete file:
 
@@ -67,6 +68,7 @@ int main(int ac, char **av)
 {
     int i;
     int j;
+    int place;
     t_stack *a;
 
     if (ac < 2)
@@ -76,11 +78,11 @@ int main(int ac, char **av)
     while (i < ac)
     {
         j = 0;
-        int number = atoi(av[i]);
-        while (number[j])
+        place = atoi(av[i]);
+        while (av[i][j])
         {
             print_stack(a);
-            a->collection[a->size++] = number;
+            a->collection[a->size++] = place;
             j++;
         }  
         i++;

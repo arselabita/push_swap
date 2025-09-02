@@ -197,6 +197,63 @@ int rr(t_stack *a, t_stack *b)
     return (-1);
 }
 
+/*
+    rra (reverse rotate a): Shift down all elements of stack a by 1.
+                            The last element becomes the first one.
+    rrb (reverse rotate b): Shift down all elements of stack b by 1.
+                            The last element becomes the first one.
+    rrr : rra and rrb at the same time.
+*/
+
+int reverse_rotate(t_stack *stack)
+{
+    int i;
+    int end;
+    int tmp;
+
+/*     if (stack->size == 0)
+        return (-1);
+    i = 0;
+    end = stack->size - 1;
+    while (i < end)
+    {
+        tmp = stack->collection[0];
+        stack->collection[0] = stack->collection[end];
+        stack->collection[end] = tmp;
+        i++;
+        end--;
+    } */
+
+    i = 0;
+    end = stack->size - 1;
+    tmp = stack->collection[end];
+    while (i < end)
+    {
+        stack->collection[i] = stack->collection[i - 1];
+        i++;
+    }
+    stack->collection[0] = tmp;
+    return (0);
+}
+int rra(t_stack *a)
+{
+    return (reverse_rotate(a));
+}
+int rrb(t_stack *b)
+{
+    return (reverse_rotate(b));
+}
+int rrr(t_stack *a, t_stack *b)
+{
+    int stack_a;
+    int stack_b;
+
+    stack_a = reverse_rotate(a);
+    stack_b = reverse_rotate(b);
+    if (stack_a == 0 && stack_b == 0)
+        return (0);
+    return (-1);
+}
 int main(int ac, char **av)
 {
     int i;
@@ -210,12 +267,12 @@ int main(int ac, char **av)
     i = 1;
     while (i < ac)
     {
-        // b->collection[b->size++] = atoi(av[i]);
-         if (i % 2 == 1)
+       // b->collection[b->size++] = atoi(av[i]);
+          if (i % 2 == 1)
             a->collection[a->size++] = atoi(av[i]);
         else
-            b->collection[b->size++] = atoi(av[i]); 
-        i++;
+            b->collection[b->size++] = atoi(av[i]);
+        i++; 
     }
 
     printf ("Before: Stack A: \n");
@@ -223,7 +280,7 @@ int main(int ac, char **av)
     printf ("Stack B: \n");
     print_stack(b);
 
-    rr(a, b);
+    rrr(a, b);
 
     printf ("After: Stack A: \n");
     print_stack(a);

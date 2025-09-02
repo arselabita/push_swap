@@ -93,28 +93,61 @@ int ss(t_stack *a, t_stack *b)
     pb (push b): Take the first element at the top of a and put it at the top of b.
                  Do nothing if a is empty.
 */
-int push1(t_stack *stack, t_stack *b)
-{
-    if (is_full(stack))
-    {
-        write(2, "CAN'T PUSH: The stack is full.\n", 32);
-        return (0);
-    }
-    stack->collection[stack->size] = b->collection[b->size];
-    stack->size++;    
-    return (true);
-}
+
 int pb(t_stack *a, t_stack *b)
 {
-    int tmp;
+    int i;
 
-    tmp = a->collection[0];
-    push1(tmp, b);
+    if (a->size == 0)
+        return (-1);
+    if (b->size >= b->capacity)
+        return (-1);
+    i = b->size;
+    // i do this to create space at the top of my stack
+    while (i > 0) 
+    {
+        b->collection[i] = b->collection[i - 1];
+        i--;
+    }
+    b->collection[0] = a->collection[0];
+    b->size++;
+    // now i need to remove the top element
+    i = 0;
+    while (i < a->size - 1)
+    {
+        a->collection[i] = a->collection[i + 1];
+        i++;
+    }
+    a->size--;
     return (0);
 }
-int pa(t_stack *b)
+int pa(t_stack *a, t_stack *b)
 {
+    int i;
 
+    // if there isnt anything just in anycase ...
+    if (b->size < 0)
+        return (-1);
+    if (a->size >= a->capacity)
+        return (-1);
+    i = a->size;
+    // i do this to create space at the top of my stack
+    while (i > 0) 
+    {
+        a->collection[i] = a->collection[i - 1];
+        i--;
+    }
+    a->collection[0] = a->collection[0];
+    a->size++;
+    // now i need to remove the top element
+    i = 0;
+    while (i < b->size - 1)
+    {
+        b->collection[i] = b->collection[i + 1];
+        i++;
+    }
+    b->size--;
+    return (0);
 }
 
 int main(int ac, char **av)
@@ -137,18 +170,18 @@ int main(int ac, char **av)
         i++;
     }
 
-/*     printf ("Before swap: Stack A: \n");
+    printf ("Before: Stack A: \n");
     print_stack(a);
     printf ("Stack B: \n");
     print_stack(b);
 
-    ss(a, b);
+    pa(a, b);
 
-    printf ("After swap: Stack A: \n");
+    printf ("After: Stack A: \n");
     print_stack(a);
     printf ("Stack B: \n");
     print_stack(b);
-    printf("----------------"); */
+    printf("----------------"); 
 
     free(a->collection);
     free(b->collection);

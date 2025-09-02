@@ -28,10 +28,12 @@ static void print_stack(t_stack *a)
 int main(int argc, char **argv)
 {
     t_stack *a;
+    t_stack *b;
 
     if (argc < 2)
         return (0);
-     a = create_stack(argc - 1);
+    a = create_stack(argc - 1);
+    // b = create_stack(argc - 1); // the temporary stack 
     if (!is_empty(a))
         return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
     if (!parse_arguments(a, argc, argv))

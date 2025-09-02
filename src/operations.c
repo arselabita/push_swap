@@ -158,12 +158,42 @@ int pa(t_stack *a, t_stack *b)
     rr : ra and rb at the same time.
 */
 
+int rotate_stack(t_stack *stack)
+{
+    int i;
+    int tmp;
 
+    if (stack->size == 0)
+        return (-1);
+    i = 0;
+    tmp = stack->collection[0];
+    while (i < stack->size - 1)
+    {
+        stack->collection[i] = stack->collection[i + 1];
+        i++;
+    }
+    stack->collection[stack->size - 1] = tmp; 
+    return (0);
+}
 
+int ra(t_stack *a)
+{
+    return (rotate_stack(a));
+}
 
+int rb(t_stack *b)
+{
+    return(rotate_stack(b));
+}
+int rr(t_stack *a, t_stack *b)
+{
+    int stack_a;
+    int stack_b;
 
-
-
+    if (stack_a == 0 && stack_b == 0)
+        return (0);
+    return (-1);
+}
 
 int main(int ac, char **av)
 {
@@ -187,15 +217,15 @@ int main(int ac, char **av)
 
     printf ("Before: Stack A: \n");
     print_stack(a);
-    printf ("Stack B: \n");
-    print_stack(b);
+    /* printf ("Stack B: \n");
+    pr int_stack(b);*/
 
-    pa(a, b);
+    ra(a);
 
     printf ("After: Stack A: \n");
     print_stack(a);
-    printf ("Stack B: \n");
-    print_stack(b);
+   /*  printf ("Stack B: \n");
+    pri nt_stack(b);*/
     printf("----------------"); 
 
     free(a->collection);

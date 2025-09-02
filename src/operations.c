@@ -190,6 +190,8 @@ int rr(t_stack *a, t_stack *b)
     int stack_a;
     int stack_b;
 
+    stack_a = rotate_stack(a);
+    stack_b = rotate_stack(b);
     if (stack_a == 0 && stack_b == 0)
         return (0);
     return (-1);
@@ -208,24 +210,25 @@ int main(int ac, char **av)
     i = 1;
     while (i < ac)
     {
-        if (i % 2 == 1)
+        // b->collection[b->size++] = atoi(av[i]);
+         if (i % 2 == 1)
             a->collection[a->size++] = atoi(av[i]);
         else
-            b->collection[b->size++] = atoi(av[i]);
+            b->collection[b->size++] = atoi(av[i]); 
         i++;
     }
 
     printf ("Before: Stack A: \n");
     print_stack(a);
-    /* printf ("Stack B: \n");
-    pr int_stack(b);*/
+    printf ("Stack B: \n");
+    print_stack(b);
 
-    ra(a);
+    rr(a, b);
 
     printf ("After: Stack A: \n");
     print_stack(a);
-   /*  printf ("Stack B: \n");
-    pri nt_stack(b);*/
+    printf ("Stack B: \n");
+    print_stack(b);
     printf("----------------"); 
 
     free(a->collection);

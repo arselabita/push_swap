@@ -126,7 +126,7 @@ int pa(t_stack *a, t_stack *b)
     int i;
 
     // if there isnt anything just in anycase ...
-    if (b->size < 0)
+    if (b->size == 0)
         return (-1);
     if (a->size >= a->capacity)
         return (-1);
@@ -137,7 +137,7 @@ int pa(t_stack *a, t_stack *b)
         a->collection[i] = a->collection[i - 1];
         i--;
     }
-    a->collection[0] = a->collection[0];
+    a->collection[0] = b->collection[0];
     a->size++;
     // now i need to remove the top element
     i = 0;

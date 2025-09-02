@@ -17,9 +17,9 @@
 # include <unistd.h> // write
 # include <stdbool.h> // true, false
 # include <limits.h> // INT_MIN, INT_MAX
-//# include "libft.h"
+# include "libft.h"
 
-// Structure for stack
+// ____STRUCT_BODY____
 typedef struct s_stack
 {
     int *collection; // dynamically allocated array (which will be a poiner)
@@ -38,12 +38,17 @@ bool is_empty(t_stack *stack);
 bool pop(t_stack *stack, int *item);
 bool push(t_stack *stack, int item);
 
-// ____IMPLEMENTATION_HELPER_FUNCTIONS____
+// ____IMPLEMENTATION_OPERATION_FUNCTIONS____
 int sa(t_stack *a);
 int sb(t_stack *b);
 int ss(t_stack *a, t_stack *b);
-
-
-
+int pb(t_stack *a, t_stack *b);
+int pa(t_stack *a, t_stack *b);
+int ra(t_stack *a);
+int rb(t_stack *b);
+int rr(t_stack *a, t_stack *b);
+int rra(t_stack *a);
+int rrb(t_stack *b);
+int rrr(t_stack *a, t_stack *b);
 
 #endif

@@ -207,8 +207,19 @@ int rr(t_stack *a, t_stack *b)
 
 int reverse_rotate(t_stack *stack)
 {
-    ra(stack);
-    rb(stack);
+    int end;
+    int tmp;
+
+    if (stack->size == 0)
+        return (-1);
+    end = stack->size - 1;
+    tmp = stack->collection[end];
+    while (end > 0)
+    {
+        stack->collection[end] = stack->collection[end - 1];
+        end--;
+    }
+    stack->collection[0] = tmp;
     return (0);
 }
 int rra(t_stack *a)
@@ -243,8 +254,8 @@ int main(int ac, char **av)
     i = 1;
     while (i < ac)
     {
-        b->collection[b->size++] = atoi(av[i]);
-          if (i % 2 == 1)
+       // b->collection[b->size++] = atoi(av[i]);
+        if (i % 2 == 1)
             a->collection[a->size++] = atoi(av[i]);
         else
             b->collection[b->size++] = atoi(av[i]);
@@ -252,14 +263,14 @@ int main(int ac, char **av)
     }
 
     printf ("Before: Stack A: \n");
- /*    print_stack(a); */
+    print_stack(a);
     printf ("Stack B: \n");
     print_stack(b);
 
-    rrb(b);
+    rrr(a, b);
 
     printf ("After: Stack A: \n");
-  /*   print_stack(a); */
+    print_stack(a);
     printf ("Stack B: \n");
     print_stack(b);
     printf("----------------"); 

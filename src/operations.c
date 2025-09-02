@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
+#include "../include/push_swap.h"
+#include <stdio.h>
 /*
 Funksionet per kete file:
 
@@ -40,6 +40,77 @@ Funksionet per kete file:
 // return -1 if is sorted in dc order
 // return 0 if the array is not sorted
 
+static void print_stack(t_stack *a)
+{
+    int i;
+
+    i = 0;
+    while (i < a->size)
+    {
+        printf("%d\n", a->collection[i]);
+        i++;
+    }
+}
+
+int swap_stack_a(t_stack *a)
+{
+    int temp;
+
+    temp = a->collection[0];
+    a->collection[0] = a->collection[1];
+    a->collection[1] = temp;
+
+    return (temp);
+}
+
+int main(int ac, char **av)
+{
+    int i;
+    int j;
+    t_stack *a;
+
+    if (ac < 2)
+        return (0);
+    i = 1;
+    a = create_stack(ac - 1);
+    while (i < ac)
+    {
+        j = 0;
+        int number = atoi(av[i]);
+        while (number[j])
+        {
+            print_stack(a);
+            a->collection[a->size++] = number;
+            j++;
+        }  
+        i++;
+    }
+    swap_stack_a(a);
+    
+    return (0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 int is_sorted(t_stack *a)
 {
     int top;
@@ -71,14 +142,4 @@ int stack_sortoing(t_stack *a)
         return ();
     }
      
-}
-/* void swap_a(t_stack *stack)
-{
-    int i;
-
-    i = 0
-    while (i < stack)
-    {
-        
-    }
 } */

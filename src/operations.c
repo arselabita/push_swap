@@ -67,12 +67,12 @@ int sb(t_stack *b)
 
 int ss(t_stack *a, t_stack *b)
 {
-    int a;
-    int b;
+    int stack_a;
+    int stack_b;
 
-    a = swap_stack(a);
-    b = swap_stack(b);
-    if (a == 0 && b == 0)
+    stack_a = swap_stack(a);
+    stack_b = swap_stack(b);
+    if (stack_a == 0 && stack_b == 0)
         return (0);
     return (-1);
 }

@@ -38,6 +38,11 @@ bool is_empty(t_stack *stack);
 bool pop(t_stack *stack, int *item);
 bool push(t_stack *stack, int item);
 
+// ____IMPLEMENTATION_HELPER_FUNCTIONS____
+int sa(t_stack *a);
+int sb(t_stack *b);
+int ss(t_stack *a, t_stack *b);
+
 
 
 

@@ -37,10 +37,6 @@ Funksionet per kete file:
     rrr : rra and rrb at the same time.
 */
 
-// return 1 if the array is sorted in asc
-// return -1 if is sorted in dc order
-// return 0 if the array is not sorted
-
 static void print_stack(t_stack *a)
 {
     int i;
@@ -52,43 +48,82 @@ static void print_stack(t_stack *a)
         i++;
     }
 }
+//     sa (swap a): Swap the first 2 elements at the top of stack a.
+//                  Do nothing if there is only one element or none.
 
-int swap_stack_a(t_stack *a)
+//     sb (swap b): Swap the first 2 elements at the top of stack b.
+//                  Do nothing if there is only one element or none.
+
+//     ss : sa and sb at the same time.
+
+int sa(t_stack *a)
+{
+    return (swap_stack(a));
+}
+int sb(t_stack *b)
+{
+    return (swap_stack(b));
+}
+
+int ss(t_stack *a, t_stack *b)
+{
+    int a;
+    int b;
+
+    a = swap_stack(a);
+    b = swap_stack(b);
+    if (a == 0 && b == 0)
+        return (0);
+    return (-1);
+}
+int swap_stack(t_stack *stack)
 {
     int temp;
 
-    temp = a->collection[0];
-    a->collection[0] = a->collection[1];
-    a->collection[1] = temp;
-
-    return (temp);
+    if (stack->size < 2)
+        return (-1);
+    temp = stack->collection[0];
+    stack->collection[0] = stack->collection[1];
+    stack->collection[1] = temp;
+    return (0);
 }
-
 int main(int ac, char **av)
 {
     int i;
-    int j;
-    int place;
     t_stack *a;
+    t_stack *b;
 
+    a = create_stack(ac - 1);
+    b = create_stack(ac - 1);
     if (ac < 2)
         return (0);
     i = 1;
-    a = create_stack(ac - 1);
     while (i < ac)
-    {
-        j = 0;
-        place = atoi(av[i]);
-        while (av[i][j])
-        {
-            print_stack(a);
-            a->collection[a->size++] = place;
-            j++;
-        }  
-        i++;
-    }
-    swap_stack_a(a);
-    
+        b->collection[b->size++] = atoi(av[i++]);
+
+    printf ("Before swap: \n");
+    print_stack(a);
+    print_stack(b);
+
+    ss(a, b);
+
+    printf ("After swap: \n");
+    print_stack(a);
+    print_stack(b);
+    printf("----------------");
+/* 
+    printf ("Before swap: \n");
+    print_stack(b);
+
+    ss(b);
+
+    printf ("After swap: \n");
+    print_stack(b); */
+
+    free(a->collection);
+    free(b->collection);
+    free(a);
+    free(b);
     return (0);
 }
 

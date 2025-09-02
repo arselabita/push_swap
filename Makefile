@@ -48,7 +48,9 @@ clean:
 fclean: clean 
 	$(RM) $(NAME)
 	$(MAKE) -C libft fclean
+	rm -r $(OBJ_DIR)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+.SILENT: 

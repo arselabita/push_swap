@@ -38,7 +38,7 @@ int main(int argc, char **argv)
         return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
     if (!parse_arguments(a, argc, argv))
         return (destroy_stack(a), 1);
-    push_swap(a, b);
+    push_swap(a);
     print_stack(a);        
     destroy_stack(a);
     return (0);

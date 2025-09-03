@@ -29,12 +29,11 @@ int pb(t_stack *a, t_stack *b)
         return (-1);
     if (b->size >= b->capacity)
         return (-1);
-    i = b->size;
     // i do this to create space at the top of my stack
-    while (i > 0) 
+    while ( b->size > 0) 
     {
-        b->collection[i] = b->collection[i - 1];
-        i--;
+        b->collection[b->size] = b->collection[b->size - 1];
+        b->size--;
     }
     b->collection[0] = a->collection[0];
     b->size++;

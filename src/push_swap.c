@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 static int is_sorted(t_stack *a)
 {
@@ -59,7 +60,50 @@ static int sorting_for_three(t_stack *a)
 	operations(a, max);
 	return (0);
 }
-static int not_sorted(t_stack *a)
+static int sorting_for_four(t_stack *a, t_stack *b)
+{
+	int i;
+	int min;
+
+	i = 0;
+	min = a->collection[0];
+	while (i <= a->size - 1)
+	{
+		if (min > a->collection[i])
+			min = a->collection[i];
+		i++;
+	}
+	if (min == a->collection[0])
+	{
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	else if (min == a->collection[1])
+	{
+		sa(a);
+		write(1, "sa\n", 3);
+	}
+	else if (min == a->collection[2])
+	{
+		rra(a);
+		write(1, "rra\n", 4);
+		rra(a);
+		write(1, "rra\n", 4);
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	else if (min == a->collection[3])
+	{
+		rra(a);
+		write(1, "rra\n", 4);
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	sorting_for_three(a);
+	pa(a, b);
+	return (0);
+}
+static int not_sorted(t_stack *a, t_stack *b)
 {
 	if (a->size == 2)
 	{
@@ -68,9 +112,11 @@ static int not_sorted(t_stack *a)
 	}
 	else if (a->size == 3)
 		sorting_for_three(a);
+	else if (a->size == 4)
+		sorting_for_four(a, b);
 	return (0);
 }
-int push_swap(t_stack *a)
+int push_swap(t_stack *a, t_stack *b)
 {
 	if (!a)
 		return (-1);
@@ -79,6 +125,6 @@ int push_swap(t_stack *a)
 		write(1, "sorted\n", 8); // DONT FORGET TO DELETE
 		return(0);
 	}
-	not_sorted(a);
+	not_sorted(a, b);
 	return (0);
 }

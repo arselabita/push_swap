@@ -41,5 +41,6 @@ int main(int argc, char **argv)
     push_swap(a, b);
     print_stack(a);        // DONT FORGET TO DELETE
     destroy_stack(a);
+    destroy_stack(b);
     return (0);
 }

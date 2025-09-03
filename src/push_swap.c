@@ -184,6 +184,8 @@ static int not_sorted(t_stack *a, t_stack *b)
 		sorting_for_four(a, b);
 	else if (a->size == 5)
 		sorting_for_five(a, b);
+	else
+		radix_sort(a, b);
 	return (0);
 }
 int push_swap(t_stack *a, t_stack *b)

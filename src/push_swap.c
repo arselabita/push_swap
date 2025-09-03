@@ -26,7 +26,7 @@ static int is_sorted(t_stack *a)
 	}
 	return (0);
 }
-static void operations(t_stack *a, int max)
+static void operations_three(t_stack *a, int max)
 {
 	if (max == a->collection[0])
 	{
@@ -57,10 +57,63 @@ static int sorting_for_three(t_stack *a)
 			max = a->collection[i];
 		i++;
 	}
-	operations(a, max);
+	operations_three(a, max);
 	return (0);
 }
+static void operations_four(t_stack *a, t_stack *b, int min)
+{
+	if (min == a->collection[0])
+	{
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	else if (min == a->collection[1])
+	{
+		sa(a);
+		write(1, "sa\n", 3);
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	else if (min == a->collection[2])
+	{
+		rra(a);
+		write(1, "rra\n", 4);
+		rra(a);
+		write(1, "rra\n", 4);
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	else if (min == a->collection[3])
+	{
+		rra(a);
+		write(1, "rra\n", 4);
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+}
 static int sorting_for_four(t_stack *a, t_stack *b)
+{
+	int i;
+	int min;
+
+	i = 0;
+	min = a->collection[0];
+	while (i <= a->size - 1)
+	{
+		if (min > a->collection[i])
+			min = a->collection[i];
+		i++;
+	}
+	operations_four(a, b, min);
+	sorting_for_three(a);
+	while (b->size > 0)
+	{
+		pa(a, b);
+		write(1, "pa\n", 3);
+	}
+	return (0);
+}
+static int sorting_for_five(t_stack *a, t_stack *b)
 {
 	int i;
 	int min;
@@ -82,13 +135,15 @@ static int sorting_for_four(t_stack *a, t_stack *b)
 	{
 		sa(a);
 		write(1, "sa\n", 3);
+		pb(a, b);
+		write(1, "pb\n", 3);
 	}
 	else if (min == a->collection[2])
 	{
-		rra(a);
-		write(1, "rra\n", 4);
-		rra(a);
-		write(1, "rra\n", 4);
+		ra(a);
+		write(1, "ra\n", 3);
+		ra(a);
+		write(1, "ra\n", 3);
 		pb(a, b);
 		write(1, "pb\n", 3);
 	}
@@ -96,11 +151,24 @@ static int sorting_for_four(t_stack *a, t_stack *b)
 	{
 		rra(a);
 		write(1, "rra\n", 4);
+		rra(a);
+		write(1, "rra\n", 4);
 		pb(a, b);
 		write(1, "pb\n", 3);
 	}
-	sorting_for_three(a);
-	pa(a, b);
+	else if (min == a->collection[4])
+	{
+		rra(a);
+		write(1, "rra\n", 4);
+		pb(a, b);
+		write(1, "pb\n", 3);
+	}
+	sorting_for_four(a, b);
+	while (b->size > 0)
+	{
+		pa(a, b);
+		write(1, "pa\n", 3);
+	}
 	return (0);
 }
 static int not_sorted(t_stack *a, t_stack *b)
@@ -114,6 +182,8 @@ static int not_sorted(t_stack *a, t_stack *b)
 		sorting_for_three(a);
 	else if (a->size == 4)
 		sorting_for_four(a, b);
+	else if (a->size == 5)
+		sorting_for_five(a, b);
 	return (0);
 }
 int push_swap(t_stack *a, t_stack *b)
@@ -122,7 +192,7 @@ int push_swap(t_stack *a, t_stack *b)
 		return (-1);
 	if (!is_sorted(a))
 	{
-		write(1, "sorted\n", 8); // DONT FORGET TO DELETE
+		write(1, "sorted\n", 7); // DONT FORGET TO DELETE
 		return(0);
 	}
 	not_sorted(a, b);

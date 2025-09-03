@@ -52,7 +52,7 @@ int rrb(t_stack *b);
 int rrr(t_stack *a, t_stack *b);
 
 // ______THE_SORTING_ALGORITHM______
-int push_swap(t_stack *a);
+int push_swap(t_stack *a, t_stack *b);
 
 
 #endif

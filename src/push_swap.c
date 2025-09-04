@@ -171,6 +171,20 @@ static int sorting_for_five(t_stack *a, t_stack *b)
 	}
 	return (0);
 }
+static int radix_sort(t_stack *a, t_stack *b)
+{
+	int i;
+	int *radix_array;
+
+	radix_array = malloc(sizeof(int));
+
+	i = 0;
+	while ()
+	{
+
+	}
+	return (0);
+}
 static int not_sorted(t_stack *a, t_stack *b)
 {
 	if (a->size == 2)

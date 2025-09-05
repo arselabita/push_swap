@@ -41,12 +41,12 @@ static int rotate_stack(t_stack *stack)
 }
 int ra(t_stack *a)
 {
-    return (rotate_stack(a));
+    return (write(1, "ra\n", 3), rotate_stack(a));
 }
 
 int rb(t_stack *b)
 {
-    return(rotate_stack(b));
+    return(write(1, "rb\n", 3), rotate_stack(b));
 }
 int rr(t_stack *a, t_stack *b)
 {
@@ -56,6 +56,6 @@ int rr(t_stack *a, t_stack *b)
     stack_a = rotate_stack(a);
     stack_b = rotate_stack(b);
     if (stack_a == 0 && stack_b == 0)
-        return (0);
+        return (write(1, "rr\n", 3), 0);
     return (-1);
 }

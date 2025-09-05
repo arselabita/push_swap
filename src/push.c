@@ -46,7 +46,7 @@ int pb(t_stack *a, t_stack *b)
         i++;
     }
     a->size--;
-    return (0);
+    return (write(1, "pb\n", 3), 0);
 }
 int pa(t_stack *a, t_stack *b)
 {
@@ -74,5 +74,5 @@ int pa(t_stack *a, t_stack *b)
         i++;
     }
     b->size--;
-    return (0);
+    return (write(1, "pa\n", 3), 0);
 }

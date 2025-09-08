@@ -77,7 +77,7 @@ static int *getting_indexes(t_stack *a, int *temp_array, int *position)
 		{
 			if (a->collection[i] == temp_array[j])
 			{
-				position[j] = i;
+				position[i] = j;
 				break;
 			}
 			j++;
@@ -86,10 +86,24 @@ static int *getting_indexes(t_stack *a, int *temp_array, int *position)
 	}
 	return (position);
 }
+static int converting_to_binary(t_stack *a, int position)
+{
+	int i;
+
+	i = 0;
+	while (i < position)
+	{
+		a->collection[i] /= 2;
+		i++;
+	}
+	return (a->collection[i] % 2);
+}
 int radix_sort(t_stack *a)
 {
 	int *temp_array;
 	int *position;
+	int i;
+	int max;
 
 	temp_array = (int *)malloc(sizeof(int) * a->size);
 	if (!temp_array)
@@ -99,18 +113,24 @@ int radix_sort(t_stack *a)
 		return (0);
 	creating_copy_arr(a, temp_array);
 	getting_indexes(a, temp_array, position);
-
-	int i = 0;
-	while (i < a->size)
+	i = 0;
+	max = a->collection[0];
+	while (i <= a->size - 1)
 	{
-		printf("arr: %d, pos: %d\n", a->collection[i], position[i]);
+		if (max < a->collection[i])
+			max = a->collection[i];
 		i++;
+	}
+	i = 0;
+	while (max == a->size - 1)
+	{
+		converting_to_binary(a->collection[i], position);
 	}
 	free(temp_array);
 	free(position);
 	return (0);
 }
-int main()
+/* int main()
 {
 	t_stack a;
 	int arr[] = {-1, -4, 12, 0, -5, 45};
@@ -121,7 +141,7 @@ int main()
 	radix_sort(&a);
 	return (0);
 }
-/* 	/// testing purposes
+	/// testing purposes
 	printf("sorted array: ");
 	i = 0;
 	while (i < a->size)

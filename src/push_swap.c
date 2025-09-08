@@ -135,21 +135,6 @@ static int sorting_for_five(t_stack *a, t_stack *b)
 		pa(a, b);
 	return (0);
 }
-/* static int radix_sort(t_stack *a, t_stack *b)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while ()
-	{
-		while ()
-		{
-
-		}
-	}
-	return (0);
-} */
 static int not_sorted(t_stack *a, t_stack *b)
 {
 	if (a->size == 2)
@@ -160,8 +145,8 @@ static int not_sorted(t_stack *a, t_stack *b)
 		sorting_for_four(a, b);
 	else if (a->size == 5)
 		sorting_for_five(a, b);
-/* 	else
-		radix_sort(a, b); */
+	else
+		radix_sort(a, b);
 	return (0);
 }
 int push_swap(t_stack *a, t_stack *b)

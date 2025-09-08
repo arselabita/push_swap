@@ -10,16 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* #include "push_swap.h"*/
+#include "push_swap.h"
 #include <stdio.h>
-#include <stdlib.h>
-
-typedef struct s_stack
-{
-    int *collection; // dynamically allocated array (which will be a poiner)
-    int capacity; // the capacity will be the size of the dynamically allocated array in terms on how many ints it can store
-    int size; // the number of elements stored in this dynamically allocated array
-} t_stack;
 
 static int bubble_sort(int *temp_array, int size)
 {
@@ -53,7 +45,6 @@ static int bubble_sort(int *temp_array, int size)
 static int creating_copy_arr(t_stack *a, int *temp_array)
 {
 	int i;
-	int j;
 
 	i = 0;
 	while (i <= a->size - 1)
@@ -64,7 +55,7 @@ static int creating_copy_arr(t_stack *a, int *temp_array)
 	bubble_sort(temp_array, a->size);
 	return (0);
 }
-static int *getting_indexes(t_stack *a, int *temp_array, int *position)
+static int getting_indexes(t_stack *a, int *temp_array, int *position)
 {
 	int i;
 	int j;
@@ -84,7 +75,7 @@ static int *getting_indexes(t_stack *a, int *temp_array, int *position)
 		}
 		i++;
 	}
-	return (position);
+	return (0);
 }
 static int converting_to_binary(int position, int bit_index)
 {
@@ -98,37 +89,35 @@ static int converting_to_binary(int position, int bit_index)
 	}
 	return (position % 2);
 }
-static int finding_max_bit(t_stack *a)
+static int finding_max_bit(int *position, int size)
 {
 	int i;
 	int j;
 	int max;
-	int temp;
 
+	max = position[0];
 	i = 0;
-	max = a->collection[0];
-	while (i <= a->size - 1)
+	while (i <= size - 1)
 	{
-		if (max < a->collection[i])
-			max = a->collection[i];
+		if (position[i] > max)
+			max = position[i];
 		i++;
 	}
-	temp = max;
 	j = 0;
-	while (temp != 0)
+	while (max != 0)
 	{
-		temp /= 2;
+		max /= 2;
 		j++;
 	}
-	return (0);
+	return (j);
 }
 int radix_sort(t_stack *a, t_stack *b)
 {
 	int *temp_array;
 	int *position;
+	int bits_iter;
 	int i;
 	int j;
-	int max;
 
 	temp_array = (int *)malloc(sizeof(int) * a->size);
 	if (!temp_array)
@@ -138,23 +127,28 @@ int radix_sort(t_stack *a, t_stack *b)
 		return (0);
 	creating_copy_arr(a, temp_array);
 	getting_indexes(a, temp_array, position);
+	bits_iter = finding_max_bit(position, a->size);
+
 	i = 0;
-	while (i < finding_max_bit(a))
+	while (i < bits_iter)
 	{
 		j = 0;
-		while (j < a->size)
+		int size = a->size;
+		while (j < size)
 		{
-			if (converting_to_binary(position[j], ) == 0)
+			if (converting_to_binary(position[j], i) == 0)
 				pb(a, b);
 			else
 				ra(a);
 			j++;
 		}
+		while (b->size > 0)
+			pa(a, b);
 		i++;
 	}
 
-	while (b->size > 0)
-		pa(a, b);
+
+
 	free(temp_array);
 	free(position);
 	return (0);

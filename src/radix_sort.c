@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void bubble_sort(t_stack *a)
+static int bubble_sort(int *temp_array, int size)
 {
 	int i;
 	int j;
@@ -20,17 +20,17 @@ void bubble_sort(t_stack *a)
 	int swapped;
 
 	i = 0;
-	while (i <= a->size - 1)
+	while (i <= size - 1)
 	{
 		j = i + 1;
 		swapped = 0;
-		while (j <= a->size - 1)
+		while (j <= size - 1)
 		{
-			if (a->collection[j] > a->collection[j + 1])
+			if (temp_array[j] > temp_array[j + 1])
 			{
-				temp = a->collection[j];
-				a->collection[j] = a->collection[j + 1];
-				a->collection[j + 1] = temp;
+				temp = temp_array[j];
+				temp_array[j] = temp_array[j + 1];
+				temp_array[j + 1] = temp;
 				swapped = 1;
 			}
 			j++;
@@ -39,39 +39,24 @@ void bubble_sort(t_stack *a)
 			break;
 		i++;
 	}
+	return (0);
 }
 
-int radix_sort(t_stack *a, t_stack *b)
+int radix_sort(t_stack *a)
 {
+	int *temp_array;
 	int i;
-	int max;
-	int k;
-	int l;
 
+	temp_array = (int *)malloc(sizeof(int) * a->size);
+	if (!temp_array)
+		return (0);
 	i = 0;
-	max = a->collection[0];
 	while (i <= a->size - 1)
 	{
-		if (max < a->collection[i])
-			max = a->collection[i];
+		temp_array[i] = a->collection[i];
 		i++;
 	}
-
-	k = 0;
-	while (k < a->size - 1)
-	{
-		l = 0;
-		while (l < a->size - 1)
-		{
-			if ( == 0)
-			{
-				pb(a, b);
-			}
-			else
-				ra(a);
-			l++;
-		}
-		k++;
-	}
+	bubble_sort(temp_array, a->size);
+	free(temp_array);
 	return (0);
 }

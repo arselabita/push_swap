@@ -50,15 +50,11 @@ static int bubble_sort(int *temp_array, int size)
 	}
 	return (0);
 }
-static int creating_copy_arr(t_stack *a)
+static int creating_copy_arr(t_stack *a, int *temp_array)
 {
-	int *temp_array;
 	int i;
-	int *position;
+	int j;
 
-	temp_array = (int *)malloc(sizeof(int) * a->size);
-	if (!temp_array)
-		return (0);
 	i = 0;
 	while (i <= a->size - 1)
 	{
@@ -66,24 +62,44 @@ static int creating_copy_arr(t_stack *a)
 		i++;
 	}
 	bubble_sort(temp_array, a->size);
-	
+	free(temp_array);
+	return (0);
+}
+static int getting_indexes(t_stack *a, int *temp_array)
+{
+	int i;
+	int j;
+	int *position;
+
 	position = (int *)malloc(sizeof(int) * a->size);
 	if (!position)
 		return (0);
 	i = 0;
 	while (i < a->size)
 	{
-		if (a->collection[i] == temp_array[i])
-			position = a->collection[i];
+		j = 0;
+		while (j < a->size)
+		{
+			if (a->collection[i] == temp_array[j])
+			{
+				position[j] = i;
+				break;
+			}
+			j++;
+		}
 		i++;
 	}
-	free(temp_array);
+	free(position);
 	return (0);
 }
 int radix_sort(t_stack *a)
 {
-	creating_copy_arr(a);
-
+	int *temp_array;
+	temp_array = (int *)malloc(sizeof(int) * a->size);
+	if (!temp_array)
+		return (0);
+	creating_copy_arr(a, temp_array);
+	getting_indexes(a, temp_array);
 	return (0);
 }
 int main()

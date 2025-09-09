@@ -73,23 +73,23 @@ static int parsing_helper(t_stack *a, char *nums, int *number)
 {
     if (!ft_valid_number(nums))
     {
-        write(2, "ERROR: The input consists non-digit characters.\n", 49);
+        write(2, "ERROR\n", 6);
         return (0);
     }
     *number = ft_atoi(nums);
     if (*number < INT_MIN || *number > INT_MAX)
     {
-        write(2, "ERROR: Out of range.\n", 22);
+        write(2, "ERROR\n", 6);
         return (0);
     }
     if (ft_check_duplicates(a, *number))
     {
-        write(2, "ERROR: The input contains duplicates.\n", 39);
+        write(2, "ERROR\n", 6);
         return (0);
     }
     if (a->size >= a->capacity)
     {
-        write(2, "ERROR: Stack Overflow.\n", 24);
+        write(2, "ERROR\n", 6);
         return (0);
     }
     return (1);
@@ -106,7 +106,7 @@ int parse_arguments(t_stack *a, int argc, char **argv)
     {
         nums = ft_split(argv[i], ' ');
         if (!nums)
-            return (write(2, "Error: Failed to split numbers!\n", 33), 0);
+            return (write(2, "ERROR\n", 6), 0);
         j = 0;
         while (nums[j])
         {

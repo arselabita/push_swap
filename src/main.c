@@ -11,20 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h> // MOS HARRO TA FSHISH TEST PURPOSE
 
-// ____FOR_TESTING_PURPOSES____
-/* static void print_stack(t_stack *a)
-{
-    int i;
-
-    i = 0;
-    while (i < a->size)
-    {
-        printf("%d\n", a->collection[i]);
-        i++;
-    }
-} */
 int main(int argc, char **argv)
 {
     t_stack *a;
@@ -35,7 +22,7 @@ int main(int argc, char **argv)
     a = create_stack(argc - 1);
     b = create_stack(argc - 1); // the temporary stack 
     if (!is_empty(a))
-        return (write(2, "ERROR: Couldn't create stack.\n", 31), 1);
+        return (write(2, "ERROR\n", 6), 1);
     if (!parse_arguments(a, argc, argv))
         return (destroy_stack(a), 1);
     push_swap(a, b);

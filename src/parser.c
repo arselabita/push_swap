@@ -71,17 +71,20 @@ void free_split(char **array)
 }
 static int parsing_helper(t_stack *a, char *nums, int *number)
 {
+    long value;
+
     if (!ft_valid_number(nums))
     {
         write(2, "ERROR\n", 6);
         return (0);
     }
-    *number = ft_atoi(nums);
-    if (*number < INT_MIN || *number > INT_MAX)
+    value = ft_atol(nums);
+    if (value < INT_MIN || value > INT_MAX)
     {
         write(2, "ERROR\n", 6);
         return (0);
     }
+    *number = (int)value;
     if (ft_check_duplicates(a, *number))
     {
         write(2, "ERROR\n", 6);
@@ -112,7 +115,7 @@ int parse_arguments(t_stack *a, int argc, char **argv)
         {
             if (!parsing_helper(a, nums[j], &number))
                 return (free_split(nums), 0);
-            a->collection[a->size++] = number; // here i add in the stack the numbers
+            a->collection[a->size++] = number;
             j++;
         }
         free_split(nums);

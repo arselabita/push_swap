@@ -55,7 +55,7 @@ static int creating_copy_arr(t_stack *a, int *temp_array)
 	bubble_sort(temp_array, a->size);
 	return (0);
 }
-static int getting_indexes(t_stack *a, int *temp_array, int *position)
+static int getting_indexes(t_stack *a, int *temp_array)
 {
 	int i;
 	int j;
@@ -68,7 +68,7 @@ static int getting_indexes(t_stack *a, int *temp_array, int *position)
 		{
 			if (a->collection[i] == temp_array[j])
 			{
-				position[i] = j;
+				a->collection[i] = j;
 				break;
 			}
 			j++;
@@ -114,7 +114,6 @@ static int finding_max_bit(int *position, int size)
 int radix_sort(t_stack *a, t_stack *b)
 {
 	int *temp_array;
-	int *position;
 	int bits_iter;
 	int i;
 	int j;
@@ -122,13 +121,9 @@ int radix_sort(t_stack *a, t_stack *b)
 	temp_array = (int *)malloc(sizeof(int) * a->size);
 	if (!temp_array)
 		return (0);
-	position = (int *)malloc(sizeof(int) * a->size);
-	if (!position)
-		return (0);
 	creating_copy_arr(a, temp_array);
-	getting_indexes(a, temp_array, position);
-	bits_iter = finding_max_bit(position, a->size);
-
+	getting_indexes(a, temp_array);
+	bits_iter = finding_max_bit(a->collection, a->size);
 	i = 0;
 	while (i < bits_iter)
 	{
@@ -136,7 +131,7 @@ int radix_sort(t_stack *a, t_stack *b)
 		int size = a->size;
 		while (j < size)
 		{
-			if (converting_to_binary(position[j], i) == 0)
+			if (converting_to_binary(a->collection[0], i) == 0)
 				pb(a, b);
 			else
 				ra(a);
@@ -146,30 +141,6 @@ int radix_sort(t_stack *a, t_stack *b)
 			pa(a, b);
 		i++;
 	}
-
-
-
 	free(temp_array);
-	free(position);
 	return (0);
 }
-/* int main()
-{
-	t_stack a;
-	int arr[] = {-1, -4, 12, 0, -5, 45};
-
-	a.collection = arr;
-	a.size = 6;
-	a.capacity = 6;
-	radix_sort(&a);
-	return (0);
-}
-	/// testing purposes
-	printf("sorted array: ");
-	i = 0;
-	while (i < a->size)
-	{
-		printf("%d ", temp_array[i]);
-		i++;
-	}
-	/// */

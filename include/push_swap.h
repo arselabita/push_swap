@@ -29,6 +29,8 @@ typedef struct s_stack
 
 // __________MAIN_HELPER_FUNCTION___________
 int parse_arguments(t_stack *a, int argc, char **argv);
+void free_split(char **array);
+
 
 // ____STACK_IMPLEMENTATION_FUNCTIONS____
 t_stack *create_stack(int capacity);

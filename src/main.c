@@ -46,11 +46,17 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
+
     argument_count = arg_count(argc, argv);
     if (argument_count == 0)
         return (write(2, "ERROR\n", 6), 1);
-    a = create_stack(argument_count);
-    b = create_stack(argument_count);
+    if (argc == 2)
+    {
+        a = create_stack(argument_count);
+        b = create_stack(argument_count);
+    }
+    a = create_stack(argc - 1);
+    b = create_stack(argc - 1);
     if (!is_empty(a))
         return (write(2, "ERROR\n", 6), 1);
     if (!parse_arguments(a, argc, argv))

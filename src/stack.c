@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "push_swap.h"
-#include "../include/push_swap.h" // mos harro ta fshish
+#include "push_swap.h"
 
 t_stack *create_stack(int capacity)
 {

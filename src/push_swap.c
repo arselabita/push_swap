@@ -153,10 +153,7 @@ int push_swap(t_stack *a, t_stack *b)
 	if (!a)
 		return (-1);
 	if (!is_sorted(a))
-	{
-		write(1, "sorted\n", 7); // DONT FORGET TO DELETE
 		return(0);
-	}
 	not_sorted(a, b);
 	return (0);
 }

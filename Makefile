@@ -12,7 +12,7 @@
 
 # the compiler flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft -g
 RM = rm -f
 MAKE = make
 

@@ -39,7 +39,6 @@ int main(int argc, char **argv)
     if (!parse_arguments(a, argc, argv))
         return (destroy_stack(a), 1);
     push_swap(a, b);
-   // print_stack(a);        // DONT FORGET TO DELETE
     destroy_stack(a);
     destroy_stack(b);
     return (0);

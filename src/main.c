@@ -12,15 +12,45 @@
 
 #include "push_swap.h"
 
+static int arg_count(int argc, char **argv)
+{
+    int i;
+    int j;
+    int count;
+    char **split;
+
+    i = 1;
+    while (i < argc)
+    {
+        split = ft_split(argv[i], ' ');
+        if (!split)
+            return (write(2, "ERROR\n", 6), 0);
+        j = 0;
+        count = 0;
+        while (split[j])
+        {
+            count++;
+            j++;
+        }
+        free_split(split);
+        i++;
+    }
+    return (count);
+}
+
 int main(int argc, char **argv)
 {
     t_stack *a;
     t_stack *b;
+    int argument_count;
 
     if (argc < 2)
         return (0);
-    a = create_stack(argc - 1);
-    b = create_stack(argc - 1); // the temporary stack 
+    argument_count = arg_count(argc, argv);
+    if (argument_count == 0)
+        return (write(2, "ERROR\n", 6), 1);
+    a = create_stack(argument_count);
+    b = create_stack(argument_count);
     if (!is_empty(a))
         return (write(2, "ERROR\n", 6), 1);
     if (!parse_arguments(a, argc, argv))

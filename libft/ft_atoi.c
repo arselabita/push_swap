@@ -30,7 +30,7 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
+	{	
 		num *= 10;
 		num += nptr[i] - '0';
 		i++;

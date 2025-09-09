@@ -57,7 +57,7 @@ static int ft_check_duplicates(t_stack *a, int number)
     }
     return (0); // no dublicate
 }
-static void free_split(char **array)
+void free_split(char **array)
 {
     int i;
 

@@ -23,103 +23,94 @@
     5. check: if the input is < 3
 */
 
-static int ft_valid_number(char *str)
+static int	ft_valid_number(char *str)
 {
-    int i;
+	int	i;
 
-    if (!str)
-        return (0);
-    i = 0;
-    if (str[i] == '-' || str[i] == '+')
-        i++;
-    if (!str[i]) // str was just + or -
-        return (0);
-    while (str[i])
-    {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-        i++;
-    }
-    return (1);
+	if (!str)
+		return (0);
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
-static int ft_check_duplicates(t_stack *a, int number)
-{
-    int i;
 
-    i = 0;
-    if (!a || !a->collection)
-        return (0);
-    while (i < a->size)
-    {
-        if (a->collection[i] == number)
-            return (1); // dublicate found
-        i++;
-    }
-    return (0); // no dublicate
+static int	ft_check_duplicates(t_stack *a, int number)
+{
+	int	i;
+
+	i = 0;
+	if (!a || !a->collection)
+		return (0);
+	while (i < a->size)
+	{
+		if (a->collection[i] == number)
+			return (1);
+		i++;
+	}
+	return (0);
 }
-void free_split(char **array)
-{
-    int i;
 
-    i = 0;
-    while (array[i])
-    {
-        free(array[i]); // here to free each str
-        i++;
-    }
-    free(array); // here i free the array itseld
+static int	parsing_helper(t_stack *a, char *nums, int *number)
+{
+	long	value;
+
+	if (!ft_valid_number(nums))
+	{
+		write(2, "ERROR\n", 6);
+		return (0);
+	}
+	value = ft_atol(nums);
+	if (value < INT_MIN || value > INT_MAX)
+	{
+		write(2, "ERROR\n", 6);
+		return (0);
+	}
+	*number = (int)value;
+	if (ft_check_duplicates(a, *number))
+	{
+		write(2, "ERROR\n", 6);
+		return (0);
+	}
+	if (a->size >= a->capacity)
+	{
+		write(2, "ERROR\n", 6);
+		return (0);
+	}
+	return (1);
 }
-static int parsing_helper(t_stack *a, char *nums, int *number)
-{
-    long value;
 
-    if (!ft_valid_number(nums))
-    {
-        write(2, "ERROR\n", 6);
-        return (0);
-    }
-    value = ft_atol(nums);
-    if (value < INT_MIN || value > INT_MAX)
-    {
-        write(2, "ERROR\n", 6);
-        return (0);
-    }
-    *number = (int)value;
-    if (ft_check_duplicates(a, *number))
-    {
-        write(2, "ERROR\n", 6);
-        return (0);
-    }
-    if (a->size >= a->capacity)
-    {
-        write(2, "ERROR\n", 6);
-        return (0);
-    }
-    return (1);
-}
-int parse_arguments(t_stack *a, int argc, char **argv)
+int	parse_arguments(t_stack *a, int argc, char **argv)
 {
-    int i;
-    int j;
-    int number;
-    char **nums;
+	int		i;
+	int		j;
+	int		number;
+	char	**nums;
 
-    i = 1;
-    while (i < argc)
-    {
-        nums = ft_split(argv[i], ' ');
-        if (!nums)
-            return (write(2, "ERROR\n", 6), 0);
-        j = 0;
-        while (nums[j])
-        {
-            if (!parsing_helper(a, nums[j], &number))
-                return (free_split(nums), 0);
-            a->collection[a->size++] = number;
-            j++;
-        }
-        free_split(nums);
-        i++;
-    }
-    return (1);
+	i = 1;
+	while (i < argc)
+	{
+		nums = ft_split(argv[i], ' ');
+		if (!nums)
+			return (write(2, "ERROR\n", 6), 0);
+		j = 0;
+		while (nums[j])
+		{
+			if (!parsing_helper(a, nums[j], &number))
+				return (free_split(nums), 0);
+			a->collection[a->size++] = number;
+			j++;
+		}
+		free_split(nums);
+		i++;
+	}
+	return (1);
 }

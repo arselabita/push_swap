@@ -12,7 +12,7 @@
 
 #include <limits.h>
 
-long 	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long	num;
 	int		minus;
@@ -31,11 +31,9 @@ long 	ft_atol(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		
 		num *= 10;
 		num += nptr[i] - '0';
 		i++;
 	}
 	return (num * minus);
 }
-

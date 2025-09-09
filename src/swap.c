@@ -22,33 +22,36 @@
     ss : sa and sb at the same time.
 */
 
-static int swap_stack(t_stack *stack)
+static int	swap_stack(t_stack *stack)
 {
-    int temp;
+	int	temp;
 
-    if (stack->size < 2)
-        return (-1);
-    temp = stack->collection[0];
-    stack->collection[0] = stack->collection[1];
-    stack->collection[1] = temp;
-    return (0);
+	if (stack->size < 2)
+		return (-1);
+	temp = stack->collection[0];
+	stack->collection[0] = stack->collection[1];
+	stack->collection[1] = temp;
+	return (0);
 }
-int sa(t_stack *a)
-{
-    return (write(1, "sa\n", 3), swap_stack(a));
-}
-int sb(t_stack *b)
-{
-    return (write(1, "sb\n", 3), swap_stack(b));
-}
-int ss(t_stack *a, t_stack *b)
-{
-    int stack_a;
-    int stack_b;
 
-    stack_a = swap_stack(a);
-    stack_b = swap_stack(b);
-    if (stack_a == 0 && stack_b == 0)
-        return (write(1, "ss\n", 3), 0);
-    return (-1);
+int	sa(t_stack *a)
+{
+	return (write(1, "sa\n", 3), swap_stack(a));
+}
+
+int	sb(t_stack *b)
+{
+	return (write(1, "sb\n", 3), swap_stack(b));
+}
+
+int	ss(t_stack *a, t_stack *b)
+{
+	int	stack_a;
+	int	stack_b;
+
+	stack_a = swap_stack(a);
+	stack_b = swap_stack(b);
+	if (stack_a == 0 && stack_b == 0)
+		return (write(1, "ss\n", 3), 0);
+	return (-1);
 }

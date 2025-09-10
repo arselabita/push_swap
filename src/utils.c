@@ -20,13 +20,13 @@ int	arg_count(int argc, char **argv)
 	char	**split;
 
 	i = 1;
+	count = 0;
 	while (i < argc)
 	{
 		split = ft_split(argv[i], ' ');
 		if (!split)
 			return (write(2, "ERROR\n", 6), 0);
 		j = 0;
-		count = 0;
 		while (split[j])
 		{
 			count++;
@@ -74,17 +74,9 @@ int	run_push_swap(int argc, char **argv)
 	argument_count = arg_count(argc, argv);
 	if (argument_count == 0)
 		return (write(2, "ERROR\n", 6), 1);
-	if (argc == 2)
-	{
-		a = create_stack(argument_count);
-		b = create_stack(argument_count);
-	}
-	else
-	{
-		a = create_stack(argc - 1);
-		b = create_stack(argc - 1);
-	}
-	if (!a)
+	a = create_stack(argument_count);
+	b = create_stack(argument_count);
+	if (!a || !b)
 		return (write(2, "ERROR\n", 6), destroy_stack(a), destroy_stack(b), 1);
 	if (!parse_arguments(a, argc, argv))
 		return (destroy_stack(a), destroy_stack(b), 1);

@@ -60,7 +60,7 @@ static int	save_the_word(char **split, int j)
 {
 	if (!split[j])
 	{
-		while (j < 0)
+		while (j > 0)
 		{
 			j--;
 			free(split[j]);

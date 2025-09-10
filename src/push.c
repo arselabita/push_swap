@@ -27,7 +27,9 @@ int	pb(t_stack *a, t_stack *b)
 {
 	int	i;
 
-	if (a->size == 0)
+	if (!a || !b || !a->collection || !b->collection)
+		return (-1);
+	if (a->size <= 0)
 		return (-1);
 	if (b->size >= b->capacity)
 		return (-1);

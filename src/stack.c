@@ -34,11 +34,8 @@ t_stack	*create_stack(int capacity)
 
 void	destroy_stack(t_stack *stack)
 {
+	if (!stack)
+		return ;
 	free(stack->collection);
 	free(stack);
 }
-
-// int	is_empty(t_stack *stack)
-// {
-// 	return (stack->size == 0);
-// }

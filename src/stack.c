@@ -38,7 +38,7 @@ void	destroy_stack(t_stack *stack)
 	free(stack);
 }
 
-bool	is_empty(t_stack *stack)
-{
-	return (stack->size == 0);
-}
+// int	is_empty(t_stack *stack)
+// {
+// 	return (stack->size == 0);
+// }

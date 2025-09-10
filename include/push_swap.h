@@ -15,7 +15,6 @@
 
 # include <stdlib.h> // malloc, free
 # include <unistd.h> // write
-# include <stdbool.h> // true, false
 # include <limits.h> // INT_MIN, INT_MAX
 # include "libft.h"
 
@@ -36,10 +35,7 @@ int		run_push_swap(int argc, char **argv);
 // ____STACK_IMPLEMENTATION_FUNCTIONS____
 t_stack	*create_stack(int capacity);
 void	destroy_stack(t_stack *stack);
-bool	is_full(t_stack *stack);
-bool	is_empty(t_stack *stack);
-bool	pop(t_stack *stack, int *item);
-bool	push(t_stack *stack, int item);
+//int	is_empty(t_stack *stack);
 
 // ____IMPLEMENTATION_OPERATION_FUNCTIONS____
 int		sa(t_stack *a);
@@ -55,6 +51,7 @@ int		rrb(t_stack *b);
 int		rrr(t_stack *a, t_stack *b);
 
 // ____HARDCODED_SORTING_FUNCTIONS____
+void	operations_for_five(t_stack *a, t_stack *b, int min);
 int		sorting_for_five(t_stack *a, t_stack *b);
 void	operations_four(t_stack *a, t_stack *b, int min);
 int		sorting_for_four(t_stack *a, t_stack *b);

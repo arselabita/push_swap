@@ -12,6 +12,23 @@
 
 #include "push_swap.h"
 
+int	sorting_for_three(t_stack *a)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = a->collection[0];
+	while (i <= a->size - 1)
+	{
+		if (max < a->collection[i])
+			max = a->collection[i];
+		i++;
+	}
+	operations_three(a, max);
+	return (0);
+}
+
 static int	not_sorted(t_stack *a, t_stack *b)
 {
 	if (a->size == 2)

@@ -84,7 +84,7 @@ int	run_push_swap(int argc, char **argv)
 		a = create_stack(argc - 1);
 		b = create_stack(argc - 1);
 	}
-	if (!is_empty(a))
+	if (!a)
 		return (write(2, "ERROR\n", 6), destroy_stack(a), destroy_stack(b), 1);
 	if (!parse_arguments(a, argc, argv))
 		return (destroy_stack(a), destroy_stack(b), 1);

@@ -25,7 +25,18 @@ SRC_DIR = src
 OBJ_DIR = build
 
 # source to object files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(SRC_DIR)/main.c \
+	   $(SRC_DIR)/operations.c \
+	   $(SRC_DIR)/parser.c \
+	   $(SRC_DIR)/push.c \
+	   $(SRC_DIR)/push_swap.c \
+	   $(SRC_DIR)/radix_sort.c \
+	   $(SRC_DIR)/radix_utils.c \
+	   $(SRC_DIR)/reverse_rotate.c \
+	   $(SRC_DIR)/rotate.c \
+	   $(SRC_DIR)/stack.c \
+	   $(SRC_DIR)/swap.c \
+	   $(SRC_DIR)/utils.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # rules
